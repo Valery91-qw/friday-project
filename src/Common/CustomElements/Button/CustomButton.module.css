@@ -1,0 +1,19 @@
+.commonButtonStyle {
+    display: inline-block;
+    color: #404040;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    outline: none;
+    border: 2px solid;
+    border-radius: 1px;
+    transition: 0.2s;
+}
+.commonButtonStyle:hover {
+    background: rgb(0, 0, 0);
+}
+.commonButtonStyle:active {
+    background-color: white;
+}
+

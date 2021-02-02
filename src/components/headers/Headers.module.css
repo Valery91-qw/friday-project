@@ -1,0 +1,25 @@
+.headerContainer {
+    display: flex;
+    height: 50px;
+    background-color: #000000;
+}
+
+.menu {
+    position: relative;
+    cursor: pointer;
+    padding: 10px 15px;
+
+    color: #fff;
+}
+
+.menu:after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: -10px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 15px 10px 0 10px;
+    border-color: #ffffff transparent transparent transparent;
+}
+
