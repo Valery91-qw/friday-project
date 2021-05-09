@@ -9,6 +9,7 @@ export const Headers = () => {
         setShowMenu(!showMenu)
     }
 
+
     return (
         <div className={style.headerContainer} >
             <h2 onClick={showMenuHandler} className={style.menu}>Menu</h2>

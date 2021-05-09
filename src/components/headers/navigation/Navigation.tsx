@@ -8,23 +8,23 @@ type PropsType = {
     showMenu: boolean
 }
 
-export const Navigation: React.FC<PropsType> = (props) => {
+export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu}) => {
 
     const dropdownRef = useRef<HTMLDivElement>(null)
     useEffect(() => {
         const pageClick = (e: any) => {
             if(dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
-                props.showMenuHandler()
+                showMenuHandler()
             }
         }
-        if(props.showMenu) {
+        if(showMenu) {
             window.addEventListener('click', pageClick)
         }
         return () => {
             window.removeEventListener('click', pageClick)
         }
 
-    }, [props])
+    }, [showMenu, showMenuHandler])
 
     return (
         <div ref={dropdownRef} className={style.navigationContainer}>
