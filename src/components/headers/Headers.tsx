@@ -10,9 +10,9 @@ export const Headers = () => {
     }
 
     return (
-        <div className={style.headerContainer}>
+        <div className={style.headerContainer} >
             <h2 onClick={showMenuHandler} className={style.menu}>Menu</h2>
-            {showMenu && <Navigation showMenuHandler={showMenuHandler}/>}
+            {showMenu && <Navigation showMenu={showMenu} showMenuHandler={showMenuHandler}/>}
         </div>
     )
 }
