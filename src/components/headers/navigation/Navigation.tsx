@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Navigation.module.css"
 import {PATH} from "../../Routes/Routes";
+import {testRequest} from "../../../dal/testRequestFromServer";
 
 type PropsType = {
     showMenuHandler: () => void
@@ -17,6 +18,7 @@ export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu}) => 
                 showMenuHandler()
             }
         }
+        testRequest.testGet().then(res => console.log(res))
         if(showMenu) {
             window.addEventListener('click', pageClick)
         }
