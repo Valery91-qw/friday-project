@@ -18,7 +18,6 @@ export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu}) => 
                 showMenuHandler()
             }
         }
-        testRequest.testGet().then(res => console.log(res))
         if(showMenu) {
             window.addEventListener('click', pageClick)
         }
