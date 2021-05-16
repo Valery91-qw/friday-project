@@ -1,5 +1,5 @@
 import style from "../TestStand.module.css";
-import {CustomInputText} from "../../../Common/CustomElements/Input/CostomInputText";
+import {CustomInputMy} from "../../../Common/CustomElements/Input/CostomInput";
 import React, {ChangeEvent, useState} from "react";
 
 
@@ -13,7 +13,7 @@ export const CustomInput = () => {
 
     return(<>
          <div className={style.textStandItem}>
-            <CustomInputText onChange={setTextInField}/>
+            <CustomInputMy onChange={setTextInField}/>
             {text}
         </div>
     </>)

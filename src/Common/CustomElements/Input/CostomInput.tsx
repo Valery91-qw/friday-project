@@ -1,19 +1,18 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes} from "react";
-import style from "./CustomInputTextx.module.css"
+import style from "./CustomInput.module.scss"
 
 type DefaultType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-export const CustomInputText: React.FC<DefaultType> = ({type, ...restProps}) => {
+export const CustomInputMy: React.FC<DefaultType> = ({type, ...restProps}) => {
 
-    // const onChangeCallback =  (event: ChangeEvent<HTMLInputElement>) => {
-    //     onChange && onChange(event)
-    // }
+    let costType = type ? type : "text"
+
     return (<>
         <input
-            type="text"
+            type={costType}
             className={style.customInput}
             {...restProps}
-
         />
     </>)
 }
+
