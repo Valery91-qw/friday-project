@@ -4,7 +4,26 @@ import {instance} from "./commmon/header";
 export const authenticator = {
     registration(email: string, password: string) {
         return instance.post<RegistrationType>("auth/register",{email, password})
+    },
+    authorization(email: string, password: string, rememberMe: boolean) {
+        return instance.post<AuthorizationType>("auth/login",{email, password, rememberMe})
     }
+}
+
+type AuthorizationType = {
+    _id: string
+    email: string
+    name: string
+    avatar?: string
+    publicCardPacksCount: number
+
+    created: Date
+    updated: Date
+    isAdmin: boolean
+    verified: boolean
+    rememberMe: boolean
+
+    error?: string
 }
 
 type RegistrationType = {

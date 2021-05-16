@@ -2,6 +2,8 @@ import React, { useState} from "react";
 import {useDispatch} from "react-redux";
 import {registrationUser} from "../../bll/registration-reducer";
 import style from "./Registration.module.scss"
+import {CustomInputMy} from "../../Common/CustomElements/Input/CostomInput";
+import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 
 export const Registration = () => {
 
@@ -32,9 +34,9 @@ export const Registration = () => {
     return (<>
         <div className={style.registrContainer}>
             <span className={style.registrText}>Registration</span>
-            <input className={style.registrInput} placeholder='you email' onChange={handleSetEmail}/>
-            <input className={style.registrInput} placeholder='you password' onChange={handleSetPassword}/>
-            <button className={style.registrButton} onClick={confirmRegistration}>Registration</button>
+            <CustomInputMy placeholder='you email' onChange={handleSetEmail}/>
+            <CustomInputMy placeholder='you password' onChange={handleSetPassword}/>
+            <CustomButton onClick={confirmRegistration}>Registration</CustomButton>
             {error && <span className={style.registrError}>Please enter you Email & Password</span>}
         </div>
     </>)
