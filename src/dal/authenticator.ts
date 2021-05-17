@@ -6,11 +6,14 @@ export const authenticator = {
         return instance.post<RegistrationType>("auth/register",{email, password})
     },
     authorization(email: string, password: string, rememberMe: boolean) {
-        return instance.post<AuthorizationType>("auth/login",{email, password, rememberMe})
+        return instance.post<AuthorizeUserDataType>("auth/login",{email, password, rememberMe})
+    },
+    checkAuthorizeUser() {
+        return instance.post<AuthorizeUserDataType>("auth/me",{})
     }
 }
 
-type AuthorizationType = {
+type AuthorizeUserDataType = {
     _id: string
     email: string
     name: string
