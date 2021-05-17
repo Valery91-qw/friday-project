@@ -1,5 +1,5 @@
 
-const InitialState: StateType = {
+const InitialState: ProfileStateType = {
     _id: null,
     email: null,
     name: null,
@@ -10,13 +10,14 @@ const InitialState: StateType = {
     isAdmin: false,
     verified: false,
     rememberMe: false,
+    isInitialize: false,
 }
 
 type ActionType = SetUserAuthDataType
 
-export const profileReducer = (state = InitialState, action: ActionType):StateType => {
+export const profileReducer = (state = InitialState, action: ActionType):ProfileStateType => {
     switch (action.type) {
-        case "profile/SET-USER-AUTH-DATA": return {...state, ...action.userData}
+        case "profile/SET-USER-AUTH-DATA": return {...state, ...action.userData, isInitialize: true}
         default: return state
     }
 }
@@ -25,7 +26,7 @@ export const setUserAuthData = (userData: UserDataType) => ({type: "profile/SET-
 
 type SetUserAuthDataType = ReturnType<typeof setUserAuthData>
 
-type UserDataType = {
+export type UserDataType = {
     _id: string,
     email: string,
     name: string,
@@ -38,7 +39,7 @@ type UserDataType = {
     rememberMe: boolean,
 }
 
-type StateType = {
+export type ProfileStateType = {
     _id: string | null,
     email: string | null,
     name: string | null,
@@ -49,4 +50,5 @@ type StateType = {
     isAdmin: boolean,
     verified: boolean,
     rememberMe: boolean,
+    isInitialize: boolean
 }

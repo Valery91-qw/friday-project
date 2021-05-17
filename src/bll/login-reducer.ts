@@ -20,8 +20,19 @@ export const authorize = (email: string, password: string, rememberMe: boolean) 
         let res = await authenticator.authorization(email, password, rememberMe)
         console.log(res.data)
         dispatch(setUserAuthData(res.data))
+    } catch (e) {
+        const error = await e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console');
+        console.log("error", {...e})
     }
-    catch (e) {
+}
+export const checkAuthUser = () => async (dispatch: Dispatch) => {
+    try {
+        let res = await authenticator.checkAuthorizeUser()
+        console.log(res.data)
+        dispatch(setUserAuthData(res.data))
+    } catch (e) {
         const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');

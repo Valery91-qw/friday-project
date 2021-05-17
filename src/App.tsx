@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.scss';
 import {Headers} from "./components/headers/Headers";
 import {Routes} from './components/Routes/Routes';
 import {HashRouter} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {checkAuthUser} from "./bll/login-reducer";
+import {RootStateType} from "./bll/store";
+import {ProfileStateType} from "./bll/profile-reducer";
 
 
 function App() {
+
+    const isInitialize = useSelector<RootStateType, boolean>(state => state.profile.isInitialize)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(checkAuthUser())
+    }, [dispatch])
+
     return (
         <div className="App">
             <HashRouter>
-                <Headers/>
+                <Headers isInitialize={isInitialize}/>
                 <div className="mainContainer">
-                    <Routes/>
+                    <Routes isInitialize={isInitialize}/>
                 </div>
             </HashRouter>
         </div>
