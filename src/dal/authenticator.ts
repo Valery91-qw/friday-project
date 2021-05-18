@@ -10,6 +10,9 @@ export const authenticator = {
     },
     checkAuthorizeUser() {
         return instance.post<AuthorizeUserDataType>("auth/me",{})
+    },
+    deauthorize() {
+        return instance.delete("auth/me", {})
     }
 }
 

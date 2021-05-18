@@ -13,18 +13,18 @@ const InitialState: ProfileStateType = {
     isInitialize: false,
 }
 
-type ActionType = SetUserAuthDataType
+type ActionType = SetUserAuthDataType | IsInitializeType
 
 export const profileReducer = (state = InitialState, action: ActionType):ProfileStateType => {
     switch (action.type) {
-        case "profile/SET-USER-AUTH-DATA": return {...state, ...action.userData, isInitialize: true}
+        case "profile/SET-USER-AUTH-DATA": return {...state, ...action.userData}
+        case "profile/SET-INITIALIZE": return {...state, isInitialize: action.initialize}
         default: return state
     }
 }
 
 export const setUserAuthData = (userData: UserDataType) => ({type: "profile/SET-USER-AUTH-DATA", userData} as const)
-
-type SetUserAuthDataType = ReturnType<typeof setUserAuthData>
+export const isInitialize = (initialize: boolean) => ({type: "profile/SET-INITIALIZE", initialize} as const)
 
 export type UserDataType = {
     _id: string,
@@ -52,3 +52,6 @@ export type ProfileStateType = {
     rememberMe: boolean,
     isInitialize: boolean
 }
+
+type SetUserAuthDataType = ReturnType<typeof setUserAuthData>
+type IsInitializeType = ReturnType<typeof isInitialize>

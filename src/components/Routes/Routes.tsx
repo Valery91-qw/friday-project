@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {Profile} from "../profile/Profile";
 import {Registration} from "../registration/Registration";
 import {Login} from "../login/Login";
@@ -24,21 +24,23 @@ export const PATH = {
 }
 
 export const Routes: FC<PropsType> = ({isInitialize}) => {
+
     return (<>
         <Switch>
             {isInitialize ?
                 <>
                     <Route path={"/"} exact render={() => <Profile/>}/>
                     <Route path={PATH.PROFILE} render={() => <Profile/>}/>
-                    <Route path={PATH.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
                     <Route path={PATH.TEST_STAND} render={() => <TestStand/>}/>
+                    <Redirect from={PATH.LOGIN} exact to={PATH.PROFILE} />
                 </>
                 :
                 <>
                     <Route path={PATH.LOGIN} render={() => <Login/>}/>
                     <Route path={PATH.REGISTRATION} render={() => <Registration/>}/>
                     <Route path={PATH.TEST_STAND} render={() => <TestStand/>}/>
+                    <Route path={PATH.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                 </>
             }
             <Route render={() => <NotFound/>}/>

@@ -32,7 +32,6 @@ export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu, isIn
             {isInitialize ?
                 <>
                     <NavLink className={style.link} to={PATH.NEW_PASSWORD}>New Password</NavLink>
-                    <NavLink className={style.link} to={PATH.PASSWORD_RECOVERY}>Password recovery</NavLink>
                     <NavLink className={style.link} to={PATH.PROFILE}>Profile</NavLink>
                     <NavLink className={style.link} to={PATH.TEST_STAND}>Test stand</NavLink>
                 </>
@@ -41,6 +40,7 @@ export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu, isIn
                     <NavLink className={style.link} to={PATH.LOGIN}>Login</NavLink>
                     <NavLink className={style.link} to={PATH.REGISTRATION}>Registration</NavLink>
                     <NavLink className={style.link} to={PATH.TEST_STAND}>Test stand</NavLink>
+                    <NavLink className={style.link} to={PATH.PASSWORD_RECOVERY}>Password recovery</NavLink>
                 </>
             }
         </div>
