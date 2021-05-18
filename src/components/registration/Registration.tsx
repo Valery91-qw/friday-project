@@ -35,7 +35,7 @@ export const Registration = () => {
         <div className={style.registrContainer}>
             <span className={style.registrText}>Registration</span>
             <CustomInputMy placeholder='you email' onChange={handleSetEmail}/>
-            <CustomInputMy placeholder='you password' onChange={handleSetPassword}/>
+            <CustomInputMy type="password" placeholder='you password' onChange={handleSetPassword}/>
             <CustomButton onClick={confirmRegistration}>Registration</CustomButton>
             {error && <span className={style.registrError}>Please enter you Email & Password</span>}
         </div>

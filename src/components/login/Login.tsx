@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import style from "./Login.module.scss"
-
-import { CustomButton } from "../../Common/CustomElements/Button/CustomButton";
+import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 import {useDispatch} from "react-redux";
 import {authorize} from "../../bll/login-reducer";
 import {CustomInputMy} from "../../Common/CustomElements/Input/CostomInput";
+
+
 
 export const Login = () => {
 
@@ -31,13 +32,12 @@ export const Login = () => {
     }
 
     const confirmAuthorize = () => {
-        if(email && password) {
+        if (email && password) {
             dispatch(authorize(email, password, rememberMe))
         } else {
             setError(true)
         }
     }
-
     return (
         <div className={style.loginContainer}>
             <span className={style.loginTitle}>Authorize</span>
