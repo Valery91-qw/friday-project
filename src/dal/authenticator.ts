@@ -12,7 +12,7 @@ export const authenticator = {
         return instance.post<AuthorizeUserDataType>("auth/me",{})
     },
     deauthorize() {
-        return instance.delete("auth/me", {})
+        return instance.delete<DeathorizeType>("auth/me", {})
     }
 }
 
@@ -45,5 +45,9 @@ type RegistrationType = {
         __v: number
         _id: string
     }
+    error?: string
+}
+type DeathorizeType = {
+    info: string,
     error?: string
 }

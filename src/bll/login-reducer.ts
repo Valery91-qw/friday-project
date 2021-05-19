@@ -16,10 +16,10 @@ export const loginReducer = (state = {}, action: ActionType):StateType => {
 export const authorize = (email: string, password: string, rememberMe: boolean) => async (dispatch: Dispatch) => {
     try {
         let res = await authenticator.authorization(email, password, rememberMe)
-        console.log(res.data)
         dispatch(setUserAuthData(res.data))
         dispatch(isInitialize(true))
     } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
@@ -29,10 +29,10 @@ export const authorize = (email: string, password: string, rememberMe: boolean) 
 export const checkAuthUser = () => async (dispatch: Dispatch) => {
     try {
         let res = await authenticator.checkAuthorizeUser()
-        console.log(res.data)
         dispatch(setUserAuthData(res.data))
         dispatch(isInitialize(true))
     } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
@@ -41,10 +41,11 @@ export const checkAuthUser = () => async (dispatch: Dispatch) => {
 }
 export const deauthorize = () => async (dispatch: Dispatch) => {
      try {
-         let res = authenticator.deauthorize()
-         console.log(res)
+         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+         let res = await authenticator.deauthorize()
          dispatch(isInitialize(false))
      } catch (e) {
+         // eslint-disable-next-line @typescript-eslint/no-unused-vars
          const error = await e.response
              ? e.response.data.error
              : (e.message + ', more details in the console');

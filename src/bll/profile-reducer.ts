@@ -1,15 +1,16 @@
-
 const InitialState: ProfileStateType = {
-    _id: null,
-    email: null,
-    name: null,
-    avatar: undefined,
-    publicCardPacksCount: null,
-    created: null,
-    updated: null,
-    isAdmin: false,
-    verified: false,
-    rememberMe: false,
+    profile: {
+        _id: null,
+        email: null,
+        name: null,
+        avatar: undefined,
+        publicCardPacksCount: null,
+        created: null,
+        updated: null,
+        isAdmin: false,
+        verified: false,
+        rememberMe: false,
+    },
     isInitialize: false,
 }
 
@@ -17,7 +18,7 @@ type ActionType = SetUserAuthDataType | IsInitializeType
 
 export const profileReducer = (state = InitialState, action: ActionType):ProfileStateType => {
     switch (action.type) {
-        case "profile/SET-USER-AUTH-DATA": return {...state, ...action.userData}
+        case "profile/SET-USER-AUTH-DATA": return {...state, profile: {...action.userData}}
         case "profile/SET-INITIALIZE": return {...state, isInitialize: action.initialize}
         default: return state
     }
@@ -38,8 +39,7 @@ export type UserDataType = {
     verified: boolean,
     rememberMe: boolean,
 }
-
-export type ProfileStateType = {
+export type ProfileUsersType = {
     _id: string | null,
     email: string | null,
     name: string | null,
@@ -50,6 +50,10 @@ export type ProfileStateType = {
     isAdmin: boolean,
     verified: boolean,
     rememberMe: boolean,
+}
+
+export type ProfileStateType = {
+    profile: ProfileUsersType
     isInitialize: boolean
 }
 

@@ -8,10 +8,14 @@
     border: 2px solid black;
     border-radius: 10px;
 
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.5);
+
 }
 .link {
-    padding: 10px 10px;
+    padding: 8px 8px;
+    margin: 2px 2px;
     text-decoration: none;
     color: black;
+    border-radius: 5px;
+    background-color: #eeeeee;
 }
