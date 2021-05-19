@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.scss';
 import {Headers} from "./components/headers/Headers";
 import {Routes} from './components/Routes/Routes';
-import {HashRouter, Redirect} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuthUser} from "./bll/login-reducer";
 import {RootStateType} from "./bll/store";

@@ -21,6 +21,7 @@ export const RequestGetComponent = () => {
                 setFirst(true)
             }
         } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const error = e.response
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
