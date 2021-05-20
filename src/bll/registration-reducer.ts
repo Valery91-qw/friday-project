@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {authenticator} from "../dal/authenticator";
+import {setServerError} from "./common-reducer";
 
 
 export const registrationReducer = (state = {}, action: ActionType): StateType => {
@@ -18,10 +19,10 @@ export const registrationUser = (email: string, password: string) => async (disp
         console.log(res)
     } catch (e) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const error = e.response
+        const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
-        console.log("error", {...e})
+        dispatch(setServerError(error))
     }
 }
 type StateType = any
