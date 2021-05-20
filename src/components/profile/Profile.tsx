@@ -6,6 +6,8 @@ import {ProfileUsersType} from "../../bll/profile-reducer";
 import style from "./Profile.module.scss"
 import unloadAvatar from "../../img/unloadAvatar.jpg"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
+import { useHistory } from "react-router-dom";
+import {PATH} from "../Routes/Routes";
 
 
 export const Profile = () => {
@@ -13,9 +15,11 @@ export const Profile = () => {
     const isInitialize = useSelector<RootStateType, boolean>(state => state.profile.isInitialize)
     const profileData = useSelector<RootStateType, ProfileUsersType>(state => state.profile.profile)
     const dispatch = useDispatch()
+    const history = useHistory();
 
     const logoutHandler = () => {
         dispatch(deauthorize())
+        history.push(PATH.LOGIN)
     }
 
     if (!isInitialize) {
