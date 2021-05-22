@@ -28,6 +28,7 @@ export const RequestGetComponent = () => {
         }
     }
 
+
     return (
         <div className={style.textStandItem}>
             <CustomButton onClick={sendTestRequest}>send get</CustomButton>

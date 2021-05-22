@@ -50,7 +50,7 @@ export const Login = () => {
                 Remember me
             </label>
             <CustomButton onClick={confirmAuthorize}>Login</CustomButton>
-            {error && <span>{error}</span>}
+            {error && <span className={style.loginError}>{error}</span>}
         </div>
     )
 }

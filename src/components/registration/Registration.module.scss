@@ -19,7 +19,7 @@
         cursor: pointer;
     }
     .registrError {
-        color: #fd6969;
+        @include error();
     }
 }
 
