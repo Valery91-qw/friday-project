@@ -7,6 +7,7 @@ import {registrationReducer} from "./registration-reducer";
 import {testStandReducer} from "./testStand-reducer";
 import thunk from "redux-thunk";
 import {commonReducer} from "./common-reducer";
+import {cardsReducer} from "./cards-reducer";
 
 const reducer = combineReducers({
     login: loginReducer,
@@ -15,7 +16,8 @@ const reducer = combineReducers({
     profile: profileReducer,
     registration: registrationReducer,
     testStand: testStandReducer,
-    common: commonReducer
+    common: commonReducer,
+    cards: cardsReducer,
 })
 
 export const store = createStore(reducer, applyMiddleware(thunk))

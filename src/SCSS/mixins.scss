@@ -18,3 +18,9 @@
     background-color: gray;
   }
 }
+
+@mixin error() {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fd6969;
+}
