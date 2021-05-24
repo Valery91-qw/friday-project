@@ -15,7 +15,7 @@ export type CardType = {
     user_id: string
     name: string
     cardsCount: number
-    created: Date
+    created: string
     grade: number
     more_id: string
     path: string
@@ -23,7 +23,7 @@ export type CardType = {
     rating: number
     shots: number
     type: string
-    updated: Date
+    updated: string
     user_name: string
     __v: number
 }
