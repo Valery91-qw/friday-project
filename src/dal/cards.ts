@@ -1,12 +1,18 @@
 import {instance} from "./commmon/header";
 
 export const cardsAPI = {
-    getCards(queryValue?: string) {
-        if(queryValue) {
-            return instance.get<CardsResponseType>(`cards/pack?${queryValue}`)
+    getCards(queryParams?: string) {
+        if(queryParams) {
+            return instance.get<CardsResponseType>(`cards/pack?${queryParams}`)
         } else {
             return instance.get<CardsResponseType>(`cards/pack`)
         }
+    },
+    createCardPack(cardsPack: Object) {
+        return instance.post(`cards/pack`, {cardsPack})
+    },
+    deleteCardPak(packId: string) {
+        return instance.delete(`cards/pack?id=${packId}`)
     }
 }
 
