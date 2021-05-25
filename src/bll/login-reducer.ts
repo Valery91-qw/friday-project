@@ -1,6 +1,8 @@
 import {Dispatch} from "redux";
 import {authenticator} from "../dal/authenticator";
 import {isInitialize, setUserAuthData} from "./profile-reducer";
+import {ThunkAction} from "redux-thunk";
+import {RootStateType} from "./store";
 //valerykrvnk@gmail.com
 //89898989
 
@@ -26,17 +28,20 @@ export const authorize = (email: string, password: string, rememberMe: boolean) 
         console.log("error", {...e})
     }
 }
-export const checkAuthUser = () => async (dispatch: Dispatch) => {
-    try {
-        let res = await authenticator.checkAuthorizeUser()
-        dispatch(setUserAuthData(res.data))
-        dispatch(isInitialize(true))
-    } catch (e) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const error = await e.response
-            ? e.response.data.error
-            : (e.message + ', more details in the console');
-        console.log("error", {...e})
+export const checkAuthUser = ():ThunkType => {
+    return async (dispatch, getState: () => RootStateType) => {
+        try {
+            let res = await authenticator.checkAuthorizeUser()
+            dispatch(setUserAuthData(res.data))
+            dispatch(isInitialize(true))
+        } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            await dispatch(deauthorize())
+            const error = await e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            console.log("error", {...e})
+        }
     }
 }
 export const deauthorize = () => async (dispatch: Dispatch) => {
@@ -55,3 +60,5 @@ export const deauthorize = () => async (dispatch: Dispatch) => {
 
 type ActionType = any
 type StateType = any
+
+type ThunkType = ThunkAction<void, RootStateType, unknown, ActionType>

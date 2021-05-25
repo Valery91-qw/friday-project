@@ -6,6 +6,8 @@ import style from "./Cards.module.scss"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 import {CardsTable} from "./table/CardsTable";
 import {Pagination} from "../../Common/Pagination/Pagination";
+import {useEffect} from "react";
+import {checkAuthUser} from "../../bll/login-reducer";
 
 export const Cards = () => {
 
@@ -13,6 +15,11 @@ export const Cards = () => {
     const totalPackCount = useSelector<RootStateType, number| null>(state => state.cards.cardPacksTotalCount)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        return () => {
+            dispatch(checkAuthUser())
+        }
+    },[dispatch])
     return (<div className={style.cardsTable}>
         <CardsTable cards={cards}/>
         <CustomButton onClick={() => dispatch(getCards())}>Get</CustomButton>
