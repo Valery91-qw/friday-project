@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import {cardsAPI, CardsResponseType, CardType} from "../dal/cards";
+import {packsAPI, CardsResponseType, PackType} from "../dal/pack";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./store";
 import {checkAuthUser} from "./login-reducer";
@@ -13,19 +13,19 @@ const initialCardsState: CardsStateType = {
     pageCount: null,
 }
 
-export const cardsReducer = (state = initialCardsState, action: ActionType):CardsStateType => {
+export const packsReducer = (state = initialCardsState, action: ActionType):CardsStateType => {
     switch (action.type) {
         case "cards/SET-CARDS":return {...state, ...action.cardsData, cardPacks: [...action.cardsData.cardPacks]}
         default: return state
     }
 }
 
-const setCards = (cardsData: CardsResponseType) => ({type: "cards/SET-CARDS", cardsData} as const)
+const setCardPacks = (cardsData: CardsResponseType) => ({type: "cards/SET-CARDS", cardsData} as const)
 
-export const getCards = () => async (dispatch: Dispatch) => {
+export const getPacks = (queryParams?: string) => async (dispatch: Dispatch) => {
     try {
-        let res = await cardsAPI.getCards()
-        dispatch(setCards(res.data))
+        let res = await packsAPI.getPacks(queryParams)
+        dispatch(setCardPacks(res.data))
         console.log(res.data)
     } catch (e) {
         const error = await e.response
@@ -37,8 +37,8 @@ export const getCards = () => async (dispatch: Dispatch) => {
 export const createCardPack = (cardsPack: any):ThunkType => {
    return async (dispatch, getState: () => RootStateType) => {
         try {
-            await cardsAPI.createCardPack(cardsPack)
-            await dispatch(getCards())
+            await packsAPI.createCardPack(cardsPack)
+            await dispatch(getPacks())
             await dispatch(checkAuthUser())
         } catch (e) {
             const error = await e.response
@@ -51,8 +51,8 @@ export const createCardPack = (cardsPack: any):ThunkType => {
 export const deleteCardPack = (packId: string):ThunkType => {
     return async (dispatch, getState) => {
         try {
-            await cardsAPI.deleteCardPak(packId);
-            await dispatch(getCards())
+            await packsAPI.deleteCardPak(packId);
+            await dispatch(getPacks())
             await dispatch(checkAuthUser())
         } catch (e) {
             const error = await e.response
@@ -63,11 +63,11 @@ export const deleteCardPack = (packId: string):ThunkType => {
     }
 }
 
-type SetCardsType = ReturnType<typeof setCards>
+type SetCardsType = ReturnType<typeof setCardPacks>
 type ActionType = SetCardsType
 
 type CardsStateType = {
-    cardPacks: Array<CardType> | null,
+    cardPacks: Array<PackType> | null,
     cardPacksTotalCount: number | null,
     maxCardsCount: number | null,
     minCardsCount: number | null,
