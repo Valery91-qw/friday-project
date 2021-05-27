@@ -12,7 +12,7 @@ import {checkAuthUser} from "../../bll/login-reducer";
 export const Packs = () => {
 
     const packs = useSelector<RootStateType, Array<PackType> | null>(state => state.packs.cardPacks)
-    const {cardPacksTotalCount, pageCount, page} = useSelector<RootStateType, any>(state => state.packs)
+    const {cardPacksTotalCount = 0, pageCount = 0, page = 0} = useSelector<RootStateType, any>(state => state.packs)
     const dispatch = useDispatch()
 
     useEffect(() => {
