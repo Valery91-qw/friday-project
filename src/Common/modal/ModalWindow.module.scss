@@ -1,0 +1,40 @@
+@import "src/SCSS/mixins";
+
+
+.modalWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .modalWindow {
+    position: relative;
+    text-align: center;
+    width: 500px;
+    min-height: 250px;
+    margin: 13% auto;
+    background-color: rgba(217, 217, 217, 0.8);
+    border: 5px solid black;
+    border-radius: 10px;
+    .modalHead {
+      @include titleDescription();
+    }
+    .modalBody {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .modalButtonClose {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 5px;
+      margin-right: 5px;
+      font-size: 18px;
+      border: 3px solid black;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
