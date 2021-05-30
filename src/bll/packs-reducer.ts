@@ -15,12 +15,12 @@ const initialCardsState: CardsStateType = {
 
 export const packsReducer = (state = initialCardsState, action: ActionType):CardsStateType => {
     switch (action.type) {
-        case "cards/SET-CARDS":return {...state, ...action.cardsData, cardPacks: [...action.cardsData.cardPacks]}
+        case "packs/SET-CARDS":return {...state, ...action.cardsData, cardPacks: [...action.cardsData.cardPacks]}
         default: return state
     }
 }
 
-const setCardPacks = (cardsData: CardsResponseType) => ({type: "cards/SET-CARDS", cardsData} as const)
+const setCardPacks = (cardsData: CardsResponseType) => ({type: "packs/SET-CARDS", cardsData} as const)
 
 export const getPacks = (queryParams?: string) => async (dispatch: Dispatch) => {
     try {
@@ -48,6 +48,7 @@ export const createCardPack = (cardsPack: any):ThunkType => {
         }
     }
 }
+
 export const deleteCardPack = (packId: string):ThunkType => {
     return async (dispatch, getState) => {
         try {

@@ -7,7 +7,7 @@ import style from "./Profile.module.scss"
 import unloadAvatar from "../../img/unloadAvatar.jpg"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 import { useHistory } from "react-router-dom";
-import {PATH} from "../Routes/Routes";
+import {PATH} from "../routes/Routes";
 
 
 export const Profile = () => {

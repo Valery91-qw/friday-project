@@ -3,8 +3,8 @@ import {PackType} from "../../../dal/pack";
 import {FC} from "react";
 import {Header} from "./Header/Header";
 import style from "./PacksTable.module.scss"
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../../bll/store";
+import {useDispatch} from "react-redux";
+import {deleteCardPack} from "../../../bll/packs-reducer";
 
 type cardsPropsType = {
     packs: Array<PackType> | null
@@ -12,7 +12,11 @@ type cardsPropsType = {
 
 export const PacksTable: FC<cardsPropsType> = ({packs}) => {
 
-    const currentId = useSelector<RootStateType, string | null>(state => state.profile.profile._id)
+    const dispatch = useDispatch()
+
+    const deleteMyPack = (packId: string) => {
+        dispatch(deleteCardPack(packId))
+    }
 
     return (
         <table className={style.cardsTable}>
@@ -22,8 +26,7 @@ export const PacksTable: FC<cardsPropsType> = ({packs}) => {
             </thead>
             <tbody>
                 {packs?.map((el, i) =><tr key={el._id}>
-                    <Column key={el._id} current={el}/>
-                    {el.user_id === currentId ? <button key={i}>delete</button> : null}
+                    <Column key={el._id} current={el} deleteMyPack={deleteMyPack}/>
                 </tr>)}
             </tbody>
         </table>

@@ -8,6 +8,7 @@ import {testStandReducer} from "./testStand-reducer";
 import thunk from "redux-thunk";
 import {commonReducer} from "./common-reducer";
 import {packsReducer} from "./packs-reducer";
+import {cardsReducer} from "./cards-reducer";
 
 const reducer = combineReducers({
     login: loginReducer,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     testStand: testStandReducer,
     common: commonReducer,
     packs: packsReducer,
+    cards: cardsReducer,
 })
 
 export const store = createStore(reducer, applyMiddleware(thunk))
