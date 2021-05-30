@@ -21,11 +21,10 @@ export const authorize = (email: string, password: string, rememberMe: boolean) 
         dispatch(setUserAuthData(res.data))
         dispatch(isInitialize(true))
     } catch (e) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
-        console.log("error", {...e})
+        console.log("error", error)
     }
 }
 export const checkAuthUser = ():ThunkType => {
@@ -35,26 +34,23 @@ export const checkAuthUser = ():ThunkType => {
             dispatch(setUserAuthData(res.data))
             dispatch(isInitialize(true))
         } catch (e) {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             await dispatch(deauthorize())
             const error = await e.response
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
-            console.log("error", {...e})
+            console.log("error", error)
         }
     }
 }
 export const deauthorize = () => async (dispatch: Dispatch) => {
      try {
-         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-         let res = await authenticator.deauthorize()
+         await authenticator.deauthorize()
          dispatch(isInitialize(false))
      } catch (e) {
-         // eslint-disable-next-line @typescript-eslint/no-unused-vars
          const error = await e.response
              ? e.response.data.error
              : (e.message + ', more details in the console');
-         console.log("error", {...e})
+         console.log("error", error)
      }
 }
 

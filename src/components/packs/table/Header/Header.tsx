@@ -1,9 +1,9 @@
 import {useDispatch} from "react-redux";
 import React, {useState} from "react";
-import {ModalWindow} from "../../../../Common/modal/ModalWindow";
+import {ModalWindow} from "../../../../Common/Modal/ModalWindow";
 import {CustomInputMy} from "../../../../Common/CustomElements/Input/CostomInput";
 import {CustomButton} from "../../../../Common/CustomElements/Button/CustomButton";
-import {createCardPack, deleteCardPack} from "../../../../bll/packs-reducer";
+import {createCardPack} from "../../../../bll/packs-reducer";
 
 export const Header = () => {
 
@@ -23,17 +23,11 @@ export const Header = () => {
         setPackName(event.currentTarget.value)
     }
     const handlerAddPack = () => {
-            dispatch(createCardPack({name: packName}))
-            setPackName('')
-            setShowModal(false)
+        dispatch(createCardPack({name: packName}))
+        setPackName('')
+        setShowModal(false)
     }
     return (<>
-        {showModal ?
-            <ModalWindow title="Add Pack" closeCallback={closeModalWindow}>
-                <CustomInputMy onChange={handlerPackName} placeholder="Pack name"/>
-                <CustomButton onClick={handlerAddPack}>Add pack</CustomButton>
-            </ModalWindow>
-            : null}
         <tr>
             <th>Name</th>
             <th>Cards amount</th>
@@ -43,6 +37,12 @@ export const Header = () => {
             <th>Carts</th>
             <th>
                 <button onClick={showModalWindow}>Add Pack</button>
+                {showModal ?
+                    <ModalWindow title="Add Pack" closeCallback={closeModalWindow}>
+                        <CustomInputMy onChange={handlerPackName} placeholder="Pack name"/>
+                        <CustomButton onClick={handlerAddPack}>Add pack</CustomButton>
+                    </ModalWindow>
+                    : null}
             </th>
         </tr>
     </>)

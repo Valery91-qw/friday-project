@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Navigation.module.css"
-import {PATH} from "../../Routes/Routes";
+import {PATH} from "../../routes/Routes";
 
 type PropsType = {
     showMenuHandler: () => void
@@ -33,7 +33,7 @@ export const Navigation: React.FC<PropsType> = ({showMenuHandler, showMenu, isIn
                 <>
                     <NavLink className={style.link} to={PATH.NEW_PASSWORD}>New Password</NavLink>
                     <NavLink className={style.link} to={PATH.PROFILE}>Profile</NavLink>
-                    <NavLink className={style.link} to={PATH.CARS}>Cars</NavLink>
+                    <NavLink className={style.link} to={PATH.PACKS}>Packs</NavLink>
                     <NavLink className={style.link} to={PATH.TEST_STAND}>Test stand</NavLink>
                 </>
                 :
