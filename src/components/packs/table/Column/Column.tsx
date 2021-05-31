@@ -23,7 +23,6 @@ export const Column = (props: PropsType) => {
 
     const handleMoveToCard = (packId: string) => {
         dispatch(setCurrentPackId(packId))
-        console.log(packId)
     }
 
     return <>
