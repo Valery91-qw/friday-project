@@ -24,7 +24,7 @@ export const authorize = (email: string, password: string, rememberMe: boolean) 
         const error = await e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
-        console.log("error", error)
+        console.log("error authorize", error)
     }
 }
 export const checkAuthUser = ():ThunkType => {
@@ -38,7 +38,7 @@ export const checkAuthUser = ():ThunkType => {
             const error = await e.response
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
-            console.log("error", error)
+            console.log("error checkAuth", error)
         }
     }
 }
@@ -50,7 +50,7 @@ export const deauthorize = () => async (dispatch: Dispatch) => {
          const error = await e.response
              ? e.response.data.error
              : (e.message + ', more details in the console');
-         console.log("error", error)
+         console.log("error deauthorize", error)
      }
 }
 

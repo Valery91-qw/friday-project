@@ -1,9 +1,7 @@
-import {Dispatch} from "redux";
 import {cardsAPI} from "../dal/cards";
 import {checkAuthUser} from "./login-reducer";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./store";
-import {getPacks} from "./packs-reducer";
 
 
 const initialCardsState: StateType = {
@@ -25,14 +23,12 @@ export const getCardsPack = (packId: string): ThunkType => {
     return async (dispatch, getState) => {
         try {
             const res = await cardsAPI.getCards(packId)
-            await dispatch(getPacks())
-            await dispatch(checkAuthUser())
             console.log(res.data)
         } catch (e) {
             const error = await e.response
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
-            console.log("error", error)
+            console.log("error in cards", error)
         }
     }
 }
