@@ -1,8 +1,6 @@
 import {cardsAPI} from "../dal/cards";
-import {checkAuthUser} from "./login-reducer";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./store";
-
 
 const initialCardsState: StateType = {
     currentPackId: null
@@ -16,14 +14,13 @@ export const cardsReducer = (state= initialCardsState, action: ActionType) => {
     }
 }
 
-export const setCurrentPackId = (packId: string) => ({type: "cards/SET-CURRENT-PACK-ID", packId})
-export const setCards = (cards: any) => ({type: "cards/SET-CARDS"})
+export const setCurrentPackId = (packId: string) => ({type: "cards/SET-CURRENT-PACK-ID", packId} as const)
+export const setDataCards = (cardsData: any) => ({type: "cards/SET-DATA-CARDS", cardsData} as const)
 
 export const getCardsPack = (packId: string): ThunkType => {
-    return async (dispatch, getState) => {
+    return async (dispatch, getState: () => RootStateType) => {
         try {
-            const res = await cardsAPI.getCards(packId)
-            console.log(res.data)
+            let res = await cardsAPI.getCards(packId);
         } catch (e) {
             const error = await e.response
                 ? e.response.data.error
@@ -34,6 +31,7 @@ export const getCardsPack = (packId: string): ThunkType => {
 }
 
 type SetCurrentPackIdActionType = ReturnType<typeof setCurrentPackId>
+type SetDataCardsActionType = ReturnType<typeof setDataCards>
 type StateType = {
     currentPackId: string | null
 }

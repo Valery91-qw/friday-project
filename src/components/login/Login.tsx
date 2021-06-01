@@ -14,8 +14,8 @@ export const Login = () => {
     const error = useSelector<RootStateType, string | null>( state => state.common.error)
     const dispatch = useDispatch()
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("valerykrvnk@gmail.com");
+    const [password, setPassword] = useState("89898989");
     const [rememberMe, setRememberMe] = useState(false);
 
     const takeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
