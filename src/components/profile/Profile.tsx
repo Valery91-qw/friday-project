@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deauthorize} from "../../bll/login-reducer";
+import {checkAuthUser, deauthorize} from "../../bll/login-reducer";
 import {RootStateType} from "../../bll/store";
 import {ProfileUsersType} from "../../bll/profile-reducer";
 import style from "./Profile.module.scss"
@@ -21,6 +21,10 @@ export const Profile = () => {
         dispatch(deauthorize())
         history.push(PATH.LOGIN)
     }
+
+    useEffect(() => {
+        dispatch(checkAuthUser())
+    }, [dispatch])
 
     if (!isInitialize) {
         return <span>something Wrong</span>

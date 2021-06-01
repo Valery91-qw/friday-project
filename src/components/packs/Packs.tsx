@@ -15,11 +15,11 @@ export const Packs = () => {
     const {cardPacksTotalCount = 0, pageCount = 0, page = 0} = useSelector<RootStateType, any>(state => state.packs)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        return () => {
-            dispatch(checkAuthUser())
-        }
-    }, [dispatch])
+    // useEffect(() => {
+    //     return () => {
+    //         dispatch(checkAuthUser())
+    //     }
+    // }, [dispatch])
     return (<div className={style.tableWrapper}>
         <PacksTable packs={packs}/>
         <CustomButton onClick={() => dispatch(getPacks())}>Get</CustomButton>

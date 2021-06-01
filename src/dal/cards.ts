@@ -3,7 +3,7 @@ import {instance} from "./commmon/header";
 
 export const cardsAPI = {
     getCards(packId: string) {
-        return instance.get<CardsResponseType>(`cards/card?&cardsPack_id=${packId}`)
+        return instance.get<CardsResponseType>(`cards/card`, {params: {cardsPack_id: packId}})
     }
 }
 type CardType = {
