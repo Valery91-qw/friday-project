@@ -6,8 +6,6 @@ import style from "./Packs.module.scss"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 import {PacksTable} from "./table/PacksTable";
 import {Pagination} from "../../Common/Pagination/Pagination";
-import {useEffect} from "react";
-import {checkAuthUser} from "../../bll/login-reducer";
 
 export const Packs = () => {
 
@@ -15,11 +13,6 @@ export const Packs = () => {
     const {cardPacksTotalCount = 0, pageCount = 0, page = 0} = useSelector<RootStateType, any>(state => state.packs)
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     return () => {
-    //         dispatch(checkAuthUser())
-    //     }
-    // }, [dispatch])
     return (<div className={style.tableWrapper}>
         <PacksTable packs={packs}/>
         <CustomButton onClick={() => dispatch(getPacks())}>Get</CustomButton>

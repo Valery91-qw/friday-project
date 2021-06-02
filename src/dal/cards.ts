@@ -2,11 +2,11 @@ import {instance} from "./commmon/header";
 
 
 export const cardsAPI = {
-    getCards(packId: string) {
-        return instance.get<CardsResponseType>(`cards/card`, {params: {cardsPack_id: packId}})
+    getCards(packId: string, maxCount?: number) {
+        return instance.get<CardsResponseType>(`cards/card`, {params: {cardsPack_id: packId, pageCount: maxCount}})
     }
 }
-type CardType = {
+export type CardType = {
     answer: string
     answerImg: string
     answerVideo: string
@@ -27,7 +27,7 @@ type CardType = {
     _id: string
 }
 
-type CardsResponseType = {
+export type CardsResponseType = {
     cards: Array<CardType>
     cardsTotalCount: number
     maxGrade: number
