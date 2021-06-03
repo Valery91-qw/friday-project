@@ -3,11 +3,37 @@
 .cardsTable {
   width: 100%;
   margin: 10px 0;
-  border: 1px solid black;
+  border: 2px solid black;
+  padding: 25px 0;
+  box-shadow: 0 0 2px 2px black ;
   .cardsTableDescription {
+    position: relative;
+    top: 15px;
     padding-bottom: 5px;
-
     font-size: 24px;
     font-weight: 700;
+    width: 150px;
+    margin: 0 auto;
+    background-color: white;
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      bottom: 0;
+
+      border: 1px solid black;
+      height: 100%;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      border: 1px solid black;
+      height: 100%;
+    }
   }
 }

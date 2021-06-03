@@ -25,8 +25,13 @@ export const Column = (props: PropsType) => {
         dispatch(setCurrentPackId(packId))
     }
 
+    let myPackStyle = currentId === props.current.user_id ? style.tdMyPack : style.tdUserName
+
     return <>
-        <td className={style.td}>{props.current.name}</td>
+        <td className={style.tdName}>
+            <span className={myPackStyle}>User: {props.current.user_name}</span>
+           <span className={style.tdPackName}>{props.current.name}</span>
+        </td>
         <td className={style.td}>{props.current.cardsCount}</td>
         <td className={style.td}>{props.current.updated.substr(0, 10).replace(/-/g, " ")}</td>
         <td className={style.td}>{props.current.grade}</td>
