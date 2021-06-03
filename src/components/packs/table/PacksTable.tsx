@@ -20,7 +20,7 @@ export const PacksTable: FC<cardsPropsType> = ({packs}) => {
 
     return (
         <table className={style.cardsTable}>
-            <caption className={style.cardsTableDescription}>Card packs</caption>
+            <caption className={style.cardsTableDescription}>Packs</caption>
             <thead className={style.cardsThead}>
                 <Header/>
             </thead>

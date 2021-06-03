@@ -2,6 +2,32 @@
   text-align: center;
   font-size: 18px;
 }
+.tdName {
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column-reverse;
+  .tdUserName {
+    padding: 0 10px;
+    font-size: 14px;
+    font-style: italic;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+  }
+  .tdMyPack {
+    padding: 0 10px;
+    font-size: 14px;
+    background-color: black;
+    color: #fd6969;
+    border-radius: 10px;
+  }
+  .tdPackName {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
 .linkToCart {
   color: #fd6969;
 }
