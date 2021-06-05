@@ -42,6 +42,34 @@ export const getCardsPack = (packId: string, cardsCount?: number): ThunkType => 
     }
 }
 
+export const createCard = (card: any, currentPackId: string): ThunkType => {
+    return async (dispatch, getState: () => RootStateType) => {
+        try {
+            await cardsAPI.createCard(card)
+            dispatch(getCardsPack(currentPackId))
+        } catch (e) {
+            const error = await e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            console.log("error in cards", error)
+        }
+    }
+}
+
+export const deleteCard = (cardId: string, currentPackId: string):ThunkType => {
+    return async (dispatch, getState: () => RootStateType) => {
+        try {
+            await cardsAPI.deleteCard(cardId)
+            dispatch(getCardsPack(currentPackId))
+        } catch (e) {
+            const error = await e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            console.log("error in cards", error)
+        }
+    }
+}
+
 type SetCurrentPackIdActionType = ReturnType<typeof setCurrentPackId>
 type SetDataCardsActionType = ReturnType<typeof setDataCards>
 type StateType = {

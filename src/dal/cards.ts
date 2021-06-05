@@ -4,6 +4,12 @@ import {instance} from "./commmon/header";
 export const cardsAPI = {
     getCards(packId: string, maxCount?: number) {
         return instance.get<CardsResponseType>(`cards/card`, {params: {cardsPack_id: packId, pageCount: maxCount}})
+    },
+    createCard(card: Object) {
+        return instance.post(`cards/card`, {card})
+    },
+    deleteCard(cardId: string) {
+        return instance.delete(`cards/card`, {params: {id: cardId}})
     }
 }
 export type CardType = {

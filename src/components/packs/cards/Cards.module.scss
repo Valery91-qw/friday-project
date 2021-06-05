@@ -4,7 +4,23 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+
+
   .cardsTitle {
     @include titleDescription();
+  }
+  .cardsTitle button {
+    position: absolute;
+    right: -150px;
+    top: 10px;
+
+    border: 1px solid black;
+    background: none;
+    white-space: nowrap;
+    transition: 0.5s;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
   }
 }
