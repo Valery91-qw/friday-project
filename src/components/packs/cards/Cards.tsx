@@ -7,8 +7,9 @@ import {CustomButton} from "../../../Common/CustomElements/Button/CustomButton";
 import style from "./Cards.module.scss"
 import {Card} from "./card/Card";
 import {ModalWindow} from "../../../Common/Modal/ModalWindow";
-import {CustomInput} from "../../testStand/customInput/CustomInput";
 import {CustomInputMy} from "../../../Common/CustomElements/Input/CostomInput";
+import { NavLink } from "react-router-dom";
+import {PATH} from "../../routes/Routes";
 
 export const Cards = () => {
 
@@ -56,6 +57,7 @@ export const Cards = () => {
         <div className={style.cardsWrapper}>
             <span className={style.cardsTitle}>Cards
                 {currentUserId === currentUserPackId ? <button onClick={showModalHandler}>add card</button> : null}
+                <NavLink className={style.cardsLink} to={PATH.LEARNPAGE}>Learn</NavLink>
             </span>
             {showModal ? <ModalWindow title="create card" closeCallback={showModalHandler} >
                             <CustomInputMy onChange={handleQuestion} placeholder="question" />
