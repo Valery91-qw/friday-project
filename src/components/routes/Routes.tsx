@@ -9,6 +9,7 @@ import {NewPassword} from "../newPassword/NewPassword";
 import {NotFound} from "../notFound/NotFound";
 import {Packs} from "../packs/Packs";
 import {Cards} from "../packs/cards/Cards";
+import {LearnPage} from "../packs/learnPage/LearnPage";
 
 type PropsType = {
     isInitialize: boolean
@@ -24,6 +25,7 @@ export const PATH = {
     PASSWORD_RECOVERY: "/password_recovery",
     PACKS: "/packs",
     CARDS: "/cards",
+    LEARNPAGE: "/learnPage"
 }
 
 export const Routes: FC<PropsType> = ({isInitialize}) => {
@@ -38,6 +40,7 @@ export const Routes: FC<PropsType> = ({isInitialize}) => {
                     <Route path={PATH.TEST_STAND} render={() => <TestStand/>}/>
                     <Route path={PATH.PACKS} render={() => <Packs />}/>
                     <Route path={PATH.CARDS} render={() => <Cards /> }/>
+                    <Route path={PATH.LEARNPAGE} render={() => <LearnPage /> }/>
                     <Redirect from={PATH.LOGIN} exact to={PATH.PROFILE} />
                 </>
                 :
