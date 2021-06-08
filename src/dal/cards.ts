@@ -10,6 +10,9 @@ export const cardsAPI = {
     },
     deleteCard(cardId: string) {
         return instance.delete(`cards/card`, {params: {id: cardId}})
+    },
+    setCardGrade(grade: number, card_id: string) {
+        return instance.put(`cards/grade`, {grade, card_id})
     }
 }
 export type CardType = {
