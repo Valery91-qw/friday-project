@@ -3,7 +3,8 @@ import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../bll/store";
 import {CardType} from "../../../dal/cards";
-import {getCardsPack} from "../../../bll/cards-reducer";
+import {getCardsPack, setCardGrade} from "../../../bll/cards-reducer";
+import style from "./LearnPage.module.scss"
 
 
 const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
@@ -17,8 +18,6 @@ const getCard = (cards: Array<CardType> | null) => {
             return {sum: newSum, id: newSum < rand ? i : acc.id}
         }
         , {sum: 0, id: -1});
-    console.log('test: ', sum, rand, res)
-    console.log(cards[res.id + 1])
     return cards[res.id + 1];
 }
 
@@ -56,6 +55,11 @@ export const LearnPage = () => {
 
     const nextCard = () => {
         setCard(getCard(cards));
+        console.log(card)
+    }
+
+    const setGrade = (i: number,) => {
+        dispatch(setCardGrade(i, card._id))
     }
 
     useEffect(() => {
@@ -67,14 +71,18 @@ export const LearnPage = () => {
         setCard(getCard(cards))
         
     }, [cards, currentPackId, dispatch, first, totalAmountCards])
+
     return (
-        <div>
-            {card.question}
-           <button onClick={prevPage}>Learn</button>
+        <div className={style.learnPageWrapper}>
+            <span className={style.learnPageQuestion}>{card.question}</span>
+            <button className={style.backButton} onClick={prevPage}>Back to pack</button>
+            <div className={style.gradeButton}>
             {grades.map((g, i) => (
-                <button key={'grade-' + i} onClick={() => {getCard(cards)}}>{g}</button>
+                <button key={'grade-' + i} onClick={() => {setGrade(i + 1)}}>{g}</button>
             ))}
-            <button onClick={nextCard}>next</button>
+            </div>
+            <button className={style.nextButton} onClick={nextCard}>next</button>
+            <span className={style.answer}>{card.answer}</span>
         </div>
     )
 }

@@ -70,6 +70,19 @@ export const deleteCard = (cardId: string, currentPackId: string):ThunkType => {
     }
 }
 
+export const setCardGrade = (grade: number, card_id: string):ThunkType => {
+    return async (dispatch, getState: () => RootStateType) => {
+        try {
+            await cardsAPI.setCardGrade(grade, card_id)
+        } catch (e) {
+            const error = await e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            console.log("error in cards", error)
+        }
+    }
+}
+
 type SetCurrentPackIdActionType = ReturnType<typeof setCurrentPackId>
 type SetDataCardsActionType = ReturnType<typeof setDataCards>
 type StateType = {
