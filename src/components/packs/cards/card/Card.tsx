@@ -7,9 +7,10 @@ import {deleteCard} from "../../../../bll/cards-reducer";
 type PropsType = {
     card: CardType
     currentPackId: string | null
+    currentUserId: string | null
 }
 
-export const Card: FC<PropsType> = ({card, currentPackId}) => {
+export const Card: FC<PropsType> = ({card, currentPackId, currentUserId}) => {
 
     const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ export const Card: FC<PropsType> = ({card, currentPackId}) => {
         <div className={style.cardWrapper}>
             <div>
                 Question: {card.question}
-                <button onClick={handleDelete}>delete</button>
+                {currentUserId === card.user_id ? <button onClick={handleDelete}>delete</button> : null}
             </div>
         </div>
     )

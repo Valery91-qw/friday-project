@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuthUser, deauthorize} from "../../bll/login-reducer";
 import {RootStateType} from "../../bll/store";
@@ -17,10 +17,19 @@ export const Profile = () => {
     const dispatch = useDispatch()
     const history = useHistory();
 
+    const [visible, setVisible] = useState(false);
+
+
     const logoutHandler = () => {
         dispatch(deauthorize())
         history.push(PATH.LOGIN)
     }
+
+    const editMode = () => {
+        setVisible(!visible)
+        console.log(visible)
+    }
+
 
     useEffect(() => {
         dispatch(checkAuthUser())
@@ -43,7 +52,9 @@ export const Profile = () => {
                 </div>
                 <div>
                     Name:
-                    <span> {profileData.name}</span>
+                    {visible
+                        ? <input onBlur={editMode} autoFocus placeholder={profileData.name}/>
+                        : <span onDoubleClick={editMode}> {profileData.name}</span>}
                 </div>
                 <div>
                     IsVerified:
