@@ -23,8 +23,9 @@ export const Pagination: FC<PropsType> = ({totalCount , elementOnPage , currentP
         let pages = [];
         const lastPage = Math.ceil(totalCount / elementOnPage)
         for (let i = 1; i <= lastPage; i++) {
+            let claass = i === currentPage ? style.active : style.normal
             pages.push((
-                <button key={i} onClick={() => getPage(i, elementOnPage)}>
+                <button className={claass} key={i} onClick={() => getPage(i, elementOnPage)}>
                     {i}
                 </button>
             ))

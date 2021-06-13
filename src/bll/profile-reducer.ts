@@ -2,7 +2,7 @@ const InitialState: ProfileStateType = {
     profile: {
         _id: null,
         email: null,
-        name: null,
+        name: undefined,
         avatar: undefined,
         publicCardPacksCount: null,
         created: null,
@@ -42,7 +42,7 @@ export type UserDataType = {
 export type ProfileUsersType = {
     _id: string | null,
     email: string | null,
-    name: string | null,
+    name: string | undefined,
     avatar?: string,
     publicCardPacksCount: number | null,
     created: Date | null,

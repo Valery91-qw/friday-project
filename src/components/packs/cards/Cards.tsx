@@ -65,7 +65,7 @@ export const Cards = () => {
                 <CustomButton onClick={handleCreateCard}>create card</CustomButton>
             </ModalWindow> : null}
 
-            {cards ? cards.map(card => <Card currentPackId={currentPackId} key={card._id} card={card}/>) : null}
+            {cards ? cards.map(card => <Card currentUserId={currentUserId} currentPackId={currentPackId} key={card._id} card={card}/>) : null}
             <CustomButton onClick={getTotalCards}>get total cards</CustomButton>
         </div>
     )
