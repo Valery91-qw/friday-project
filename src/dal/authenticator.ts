@@ -13,6 +13,9 @@ export const authenticator = {
     },
     deauthorize() {
         return instance.delete<DeathorizeType>("auth/me", {})
+    },
+    updateProfile(name?: string, avatar?: string) {
+        return instance.put("auth/me", {name, avatar})
     }
 }
 

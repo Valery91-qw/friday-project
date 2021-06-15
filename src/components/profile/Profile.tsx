@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuthUser, deauthorize} from "../../bll/login-reducer";
 import {RootStateType} from "../../bll/store";
-import {ProfileUsersType} from "../../bll/profile-reducer";
+import {ProfileUsersType, updateCurrentUser} from "../../bll/profile-reducer";
 import style from "./Profile.module.scss"
 import unloadAvatar from "../../img/unloadAvatar.jpg"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
@@ -18,7 +18,7 @@ export const Profile = () => {
     const history = useHistory();
 
     const [visible, setVisible] = useState(false);
-
+    const [newName, setNewName] = useState("")
 
     const logoutHandler = () => {
         dispatch(deauthorize())
@@ -27,9 +27,14 @@ export const Profile = () => {
 
     const editMode = () => {
         setVisible(!visible)
-        console.log(visible)
+        if(newName.length > 0) {
+            dispatch(updateCurrentUser(newName))
+        }
     }
 
+    const setName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewName(e.currentTarget.value);
+    }
 
     useEffect(() => {
         dispatch(checkAuthUser())
@@ -53,7 +58,7 @@ export const Profile = () => {
                 <div>
                     Name:
                     {visible
-                        ? <input onBlur={editMode} autoFocus placeholder={profileData.name}/>
+                        ? <input onBlur={editMode} autoFocus placeholder={profileData.name} onChange={(e) => setName(e)}/>
                         : <span onDoubleClick={editMode}> {profileData.name}</span>}
                 </div>
                 <div>
