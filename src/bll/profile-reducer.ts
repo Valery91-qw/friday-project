@@ -1,3 +1,8 @@
+import {ThunkAction} from "redux-thunk";
+import {RootStateType} from "./store";
+import {authenticator} from "../dal/authenticator";
+import {checkAuthUser} from "./login-reducer";
+
 const InitialState: ProfileStateType = {
     profile: {
         _id: null,
@@ -26,6 +31,20 @@ export const profileReducer = (state = InitialState, action: ActionType):Profile
 
 export const setUserAuthData = (userData: UserDataType) => ({type: "profile/SET-USER-AUTH-DATA", userData} as const)
 export const isInitialize = (initialize: boolean) => ({type: "profile/SET-INITIALIZE", initialize} as const)
+
+export const updateCurrentUser = (name?: string, avatar?: string):ThunkType => {
+    return async (dispatch, getState: () => RootStateType) => {
+        try {
+            await authenticator.updateProfile(name, avatar);
+            await dispatch(checkAuthUser());
+        } catch (e) {
+            const error = await e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            console.log("error", error)
+        }
+    }
+}
 
 export type UserDataType = {
     _id: string,
@@ -59,3 +78,5 @@ export type ProfileStateType = {
 
 type SetUserAuthDataType = ReturnType<typeof setUserAuthData>
 type IsInitializeType = ReturnType<typeof isInitialize>
+
+type ThunkType = ThunkAction<void, RootStateType, unknown, ActionType>
