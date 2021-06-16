@@ -22,6 +22,9 @@ const reducer = combineReducers({
     cards: cardsReducer,
 })
 
+
 export const store = createStore(reducer, applyMiddleware(thunk))
+
+
 
 export type RootStateType = ReturnType<typeof reducer>

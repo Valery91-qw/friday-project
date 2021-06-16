@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuthUser, deauthorize} from "../../bll/login-reducer";
 import {RootStateType} from "../../bll/store";
@@ -8,6 +8,8 @@ import unloadAvatar from "../../img/unloadAvatar.jpg"
 import {CustomButton} from "../../Common/CustomElements/Button/CustomButton";
 import { useHistory } from "react-router-dom";
 import {PATH} from "../routes/Routes";
+import {ModalWindow} from "../../Common/Modal/ModalWindow";
+import {CustomInputMy} from "../../Common/CustomElements/Input/CostomInput";
 
 
 export const Profile = () => {
@@ -17,8 +19,23 @@ export const Profile = () => {
     const dispatch = useDispatch()
     const history = useHistory();
 
+    const [showModal, setShowModal] = useState(false)
+    const [url, setUrl] = useState("")
     const [visible, setVisible] = useState(false);
     const [newName, setNewName] = useState("")
+
+    const closeModal = () => {
+        setShowModal(false)
+        if(url.indexOf('https') !== -1) {
+            dispatch(updateCurrentUser(undefined, url))
+        }
+    }
+    const openModal = () => {
+        setShowModal(true)
+    }
+    const urlAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+        setUrl(e.currentTarget.value)
+    }
 
     const logoutHandler = () => {
         dispatch(deauthorize())
@@ -50,7 +67,8 @@ export const Profile = () => {
                 <CustomButton onClick={logoutHandler}>logout</CustomButton>
             </div>
             <div className={style.profileDescription}>
-                <img className={style.descriptionAvatar} alt={"Avatar"} src={unloadAvatar}/>
+                <button onClick={openModal}>change avatar</button>
+                <img className={style.descriptionAvatar} alt={"Avatar"} src={profileData.avatar ? profileData.avatar : unloadAvatar}/>
                 <div>
                     Email:
                     <span> {profileData.email}</span>
@@ -70,6 +88,10 @@ export const Profile = () => {
                     <span> {profileData.publicCardPacksCount}</span>
                 </div>
             </div>
+            {showModal ? <ModalWindow title="Change avatar" closeCallback={closeModal}>
+                <CustomInputMy onChange={urlAvatar} placeholder="insert URL" />
+                <CustomButton onClick={closeModal}>change Avatar</CustomButton>
+            </ModalWindow> : null}
         </div>
     )
 }
