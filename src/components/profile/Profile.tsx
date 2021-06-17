@@ -28,7 +28,9 @@ export const Profile = () => {
         setShowModal(false)
         if(url.indexOf('https') !== -1) {
             dispatch(updateCurrentUser(undefined, url))
+
         }
+        setUrl('')
     }
     const openModal = () => {
         setShowModal(true)
