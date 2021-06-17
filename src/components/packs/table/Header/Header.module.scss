@@ -1,0 +1,50 @@
+.amount {
+  position: relative;
+  .heightCards {
+    position: absolute;
+    border: none;
+    background: none;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      content: "";
+      width: 10px;
+      height: 2px;
+      background-color: black;
+      transform: rotate(-60deg);
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      left: 10px;
+      width: 10px;
+      height: 2px;
+      background-color: black;
+      transform: rotate(60deg);
+    }
+  }
+  .lowCards {
+      position: absolute;
+      border: none;
+      background: none;
+      cursor: pointer;
+      top: 18px;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 2px;
+        background-color: black;
+        transform: rotate(60deg);
+      }
+      &:after {
+        position: absolute;
+        content: "";
+        left: 10px;
+        width: 10px;
+        height: 2px;
+        background-color: black;
+        transform: rotate(-60deg);
+      }
+  }
+}
