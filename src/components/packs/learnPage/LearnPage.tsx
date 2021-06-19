@@ -55,7 +55,6 @@ export const LearnPage = () => {
 
     const nextCard = () => {
         setCard(getCard(cards));
-        console.log(card)
     }
 
     const setGrade = (i: number,) => {
