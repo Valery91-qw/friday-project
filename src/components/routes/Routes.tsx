@@ -34,7 +34,7 @@ export const Routes: FC<PropsType> = ({isInitialize}) => {
         <Switch>
             {isInitialize ?
                 <>
-                    <Route path={"/"} exact render={() => <Profile/>}/>
+                    <Route exact path={"/"} render={() => <Profile/>}/>
                     <Route path={PATH.PROFILE} render={() => <Profile/>}/>
                     <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword/>}/>
                     <Route path={PATH.TEST_STAND} render={() => <TestStand/>}/>

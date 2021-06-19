@@ -28,16 +28,10 @@ export const Header = () => {
         setPackName('')
         setShowModal(false)
     }
-    const heightSort = () => {
-        console.log('my func')
-    }
     return (<>
         <tr>
             <th>Name</th>
-            <th className={style.amount}>Cards amount
-                <button onClick={heightSort} className={style.heightCards}/>
-                <button className={style.lowCards}/>
-            </th>
+            <th className={style.amount}>Cards amount</th>
             <th>Last update</th>
             <th>Grade</th>
             <th>Rating</th>
